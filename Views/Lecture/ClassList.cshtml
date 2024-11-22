@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CMCSProjectPART1.Models.ClassModel>
+
+<h1>Your Classes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Class Name</th>
+            <th>Class Code</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ClassName</td>
+                <td>@item.ClassCode</td>
+                <td>@item.Description</td>
+                <td>
+                    <a class="btn btn-primary" href="/Lecture/EditClass/@item.Id">Edit</a>
+                    <a class="btn btn-danger" href="/Lecture/DeleteClass/@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-success" href="/Lecture/AddClass">Add New Class</a>

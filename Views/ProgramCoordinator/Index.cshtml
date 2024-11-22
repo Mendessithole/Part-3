@@ -1,0 +1,41 @@
+﻿@model IEnumerable<CMCSProjectPART1.Models.ClaimModel>
+
+<h2>Claims List</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model)
+        {
+            <tr>
+                <td>@claim.Description</td>
+                <td>@claim.Amount</td>
+                <td>@claim.Status</td>
+                <td>
+                    @if (claim.Status == "Pending")
+                    {
+                        <form method="post" asp-action="Approve" asp-route-id="@claim.Id">
+                            <button type="submit" class="btn btn-success">Approve</button>
+                        </form>
+                        <form method="post" asp-action="Reject" asp-route-id="@claim.Id">
+                            <button type="submit" class="btn btn-danger">Reject</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="badge @(claim.Status == "Approved" ? "badge-success" : "badge-danger")">
+                            @claim.Status
+                        </span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

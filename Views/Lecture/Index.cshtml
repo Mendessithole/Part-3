@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Lecture Dashboard";
+}
+
+<div class="container lecture-dashboard">
+    <h1 class="text-center">Welcome to the Lecture Dashboard</h1>
+
+    <div class="dashboard-options text-center">
+        <p>Please select one of the options below to manage your tasks:</p>
+        <a class="btn btn-primary btn-lg" asp-controller="Lecture" asp-action="ClassList">Manage Classes</a>
+       
+        
+        <button class="btn btn-primary btn-lg" onclick="location.href='/Lecture/MonthlyClaims'">View Monthly Claims</button>
+        <!-- Submit Claim Button -->
+       
+
+        <!-- Submit Claim Button -->
+        <button class="btn btn-info btn-lg" onclick="location.href='@Url.Action("SubmitClaim", "Lecture")'">Submit a Claim</button>
+
+        
+
+
+    </div>
+</div>
+
+<style>
+    .lecture-dashboard {
+        margin-top: 50px;
+    }
+
+    .dashboard-options button {
+        margin: 10px;
+        width: 200px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .container {
+        padding: 40px;
+    }
+</style>

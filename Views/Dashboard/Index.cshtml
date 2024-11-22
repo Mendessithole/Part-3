@@ -1,0 +1,117 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            background-color: #f0f0f0; /* Light grey background */
+            font-family: Arial, sans-serif;
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack elements vertically */
+            min-height: 100vh; /* Full height */
+            margin: 0; /* Remove default margin */
+        }
+
+        .container {
+            flex: 1; /* Allow container to grow */
+            max-width: 1200px; /* Optional: adjust max width */
+            margin: 50px auto; /* Center the container vertically and horizontally */
+            text-align: center; /* Center text */
+        }
+
+        h1 {
+            font-size: 32px; /* Increased font size */
+            color: #333; /* Dark text color */
+            margin-bottom: 40px; /* Less space below title */
+        }
+
+        h3 {
+            font-size: 24px; /* Decreased font size */
+            color: #555; /* Slightly lighter text color for subtitle */
+            margin-top: 0px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-options {
+            display: flex; /* Align buttons horizontally */
+            justify-content: center; /* Center the buttons */
+            gap: 20px; /* Space between buttons */
+            flex-wrap: wrap; /* Allow wrapping in case of smaller screens */
+        }
+
+        .btn {
+            color: white; /* White text */
+            border: none; /* No border */
+            padding: 15px 30px; /* Padding for buttons */
+            margin: 10px; /* Space between buttons */
+            cursor: pointer; /* Pointer cursor on hover */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Transition effect */
+            font-size: 18px; /* Consistent font size */
+            width: 200px; /* Fixed button width for uniform size */
+        }
+
+        .btn-lecturer {
+            background-color: #4CAF50; /* Green for Lecturer */
+        }
+
+            .btn-lecturer:hover {
+                background-color: #45a049; /* Darker green on hover */
+            }
+
+        .btn-coordinator {
+            background-color: #2196F3; /* Blue for Program Coordinator */
+        }
+
+            .btn-coordinator:hover {
+                background-color: #1976D2; /* Darker blue on hover */
+            }
+
+        .btn-managers {
+            background-color: #FF5722; /* Orange for Academic Managers */
+        }
+
+            .btn-managers:hover {
+                background-color: #E64A19; /* Darker orange on hover */
+            }
+
+        .btn-hr {
+            background-color: #FF9800; /* Orange for HR */
+        }
+
+            .btn-hr:hover {
+                background-color: #FB8C00; /* Darker orange on hover */
+            }
+
+        footer {
+            background-color: #333; /* Dark background for footer */
+            color: white; /* White text */
+            text-align: center; /* Center footer text */
+            padding: 10px; /* Padding for footer */
+            position: relative; /* Position relative for footer */
+            bottom: 0; /* Stick to bottom */
+            width: 100%; /* Full width */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Contract Monthly Claim System</h1>
+        <h3>Select your role to proceed:</h3>
+        <div class="dashboard-options">
+            <!-- Buttons aligned horizontally -->
+            <a asp-controller="Lecture" asp-action="Index" class="btn btn-lecturer">Lecturer Dashboard</a>
+            <button class="btn btn-coordinator" onclick="location.href='/ProgramCoordinator'">Program Coordinator</button>
+            <button class="btn btn-managers" onclick="location.href='/ProgramCoordinator'">Academic Managers</button>
+            <!-- New button for HR Report -->
+            <button class="btn btn-hr" onclick="location.href='/HR/GenerateReport'">HR Generated Report</button>
+        </div>
+    </div>
+</body>
+</html>

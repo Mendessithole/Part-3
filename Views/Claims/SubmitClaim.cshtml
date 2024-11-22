@@ -1,0 +1,64 @@
+﻿@model CMCSProjectPART1.Models.Claim
+
+<h2>Submit a Claim</h2>
+
+<form asp-action="SubmitClaim" method="post">
+    <fieldset>
+        <legend>Personal Details</legend>
+
+        <div class="form-group">
+            <label asp-for="LecturerName"></label>
+            <input asp-for="LecturerName" class="form-control" />
+            <span asp-validation-for="LecturerName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LecturerSurname"></label>
+            <input asp-for="LecturerSurname" class="form-control" />
+            <span asp-validation-for="LecturerSurname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EmployeeNo"></label>
+            <input asp-for="EmployeeNo" class="form-control" />
+            <span asp-validation-for="EmployeeNo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ContactDetails"></label>
+            <input asp-for="ContactDetails" class="form-control" />
+            <span asp-validation-for="ContactDetails" class="text-danger"></span>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Claim Details</legend>
+
+        <div class="form-group">
+            <label asp-for="Module"></label>
+            <input asp-for="Module" class="form-control" />
+            <span asp-validation-for="Module" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Programme"></label>
+            <input asp-for="Programme" class="form-control" />
+            <span asp-validation-for="Programme" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="HoursWorked"></label>
+            <input asp-for="HoursWorked" class="form-control" />
+            <span asp-validation-for="HoursWorked" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="HourlyRate"></label>
+            <input asp-for="HourlyRate" class="form-control" />
+            <span asp-validation-for="HourlyRate" class="text-danger"></span>
+        </div>
+    </fieldset>
+
+    <button type="button" class="btn btn-secondary">Add Another Module</button>
+    <button type="submit" class="btn btn-primary">Submit Claim</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

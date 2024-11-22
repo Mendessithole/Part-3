@@ -1,0 +1,158 @@
+﻿@model CMCSProjectPART1.Models.SubmitClaimModel
+
+@{
+    ViewData["Title"] = "Submit Claim";
+}
+
+<h1 class="text-center text-primary my-5">Submit Claim</h1>
+
+<form asp-action="SubmitClaim" method="post" enctype="multipart/form-data" class="submit-form">
+    <!-- Claim Description Field -->
+    <div class="form-group">
+        <label for="ClaimDescription">Claim Description:</label>
+        <textarea id="ClaimDescription" asp-for="ClaimDescription" class="form-control" placeholder="Describe your claim" required></textarea>
+        <span asp-validation-for="ClaimDescription" class="text-danger"></span>
+    </div>
+
+    <!-- Amount Field (readonly, auto-calculated) -->
+    <div class="form-group">
+        <label for="Amount">Amount:</label>
+        <input type="number" id="Amount" asp-for="Amount" class="form-control" placeholder="Calculated Amount"  />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+
+    <!-- Claim Date Field -->
+    <div class="form-group">
+        <label for="ClaimDate">Claim Date:</label>
+        <input type="date" id="ClaimDate" asp-for="ClaimDate" class="form-control" required />
+        <span asp-validation-for="ClaimDate" class="text-danger"></span>
+    </div>
+
+    <!-- Document Upload Field -->
+    <div class="form-group">
+        <label for="ClaimDocument">Upload Document:</label>
+        <input type="file" id="ClaimDocument" asp-for="ClaimDocument" class="form-control-file" accept=".pdf,.doc,.docx" required />
+        <span asp-validation-for="ClaimDocument" class="text-danger"></span>
+    </div>
+
+    <!-- Hours Worked Field -->
+    <div class="form-group">
+        <label for="HoursWorked">Hours Worked:</label>
+        <input type="number" id="HoursWorked" asp-for="HoursWorked" class="form-control" required />
+        <span asp-validation-for="HoursWorked" class="text-danger"></span>
+    </div>
+
+    <!-- Hourly Rate Field -->
+    <div class="form-group">
+        <label for="HourlyRate">Hourly Rate:</label>
+        <input type="number" id="HourlyRate" asp-for="HourlyRate" class="form-control" required />
+        <span asp-validation-for="HourlyRate" class="text-danger"></span>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary btn-block">Submit Claim</button>
+</form>
+
+<!-- Back Button -->
+<a href="/Lecture/MonthlyClaims" class="btn btn-link btn-block">Back to Monthly Claims</a>
+
+<script>
+    // Auto-calculation for Amount field
+    $(document).ready(function () {
+        // When Hours Worked or Hourly Rate changes
+        $('#HoursWorked, #HourlyRate').on('input', function () {
+            var hoursWorked = parseFloat($('#HoursWorked').val()) || 0; // Get Hours Worked
+            var hourlyRate = parseFloat($('#HourlyRate').val()) || 0;  // Get Hourly Rate
+            var totalAmount = hoursWorked * hourlyRate;               // Calculate Amount
+
+            // Update the Amount field
+            $('#Amount').val(totalAmount.toFixed(2));  // Format to 2 decimal places
+        });
+    });
+</script>
+
+<style>
+    /* Styling for form */
+    body {
+        background-color: #f9f9f9;
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    h1 {
+        color: #007bff;
+        font-size: 36px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .submit-form {
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        max-width: 600px;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-size: 16px;
+        color: #444;
+        font-weight: bold;
+    }
+
+    .form-control {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        width: 100%;
+        font-size: 14px;
+    }
+
+        .form-control[readonly] {
+            background-color: #e9ecef;
+            opacity: 1;
+            pointer-events: none;
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-link {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+
+    .text-danger {
+        color: #dc3545;
+        font-size: 12px;
+    }
+</style>

@@ -1,0 +1,53 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using CMCSProjectPART1.Models;
+using System.Collections.Generic;
+
+namespace CMCSProjectPART1.Controllers
+{
+    public class ClaimsController : Controller
+    {
+        [HttpGet]
+        public IActionResult SubmitClaim()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SubmitClaim(Claim claim)
+        {
+            if (ModelState.IsValid)
+            {
+                // Simulated logic for saving the claim (non-functional)
+                return RedirectToAction("Index", "Home");
+            }
+            return View(claim);
+        }
+
+        [HttpGet]
+        public IActionResult ReviewClaims()
+        {
+            // Simulated claims list
+            List<Claim>
+    claims = new List<Claim>
+        {
+        new Claim { ClaimID = 1, LecturerName = "John Doe", HoursWorked = 10, HourlyRate = 50, ClaimStatus = "Pending" },
+        new Claim { ClaimID = 2, LecturerName = "Jane Smith", HoursWorked = 15, HourlyRate = 55, ClaimStatus = "Pending" }
+        };
+        return View(claims);
+        }
+
+        [HttpPost]
+        public IActionResult ApproveClaim(int claimID)
+        {
+        // Simulated logic to mark claim as approved (non-functional)
+        return RedirectToAction("ReviewClaims");
+        }
+
+        [HttpPost]
+        public IActionResult RejectClaim(int claimID)
+        {
+        // Simulated logic to mark claim as rejected (non-functional)
+        return RedirectToAction("ReviewClaims");
+        }
+        }
+        }

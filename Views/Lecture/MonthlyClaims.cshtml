@@ -1,0 +1,79 @@
+﻿@model IEnumerable<CMCSProjectPART1.Models.MonthlyClaimModel>
+
+<h1 class="text-center text-primary my-5">Monthly Claims</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Claim Description</th>
+                <th>Hours Worked</th>
+                <th>Hourly Rate</th>
+                <th>Amount</th>
+                <th>Claim Date</th>
+                <th>Document</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model)
+            {
+                <tr>
+                    <td>@claim.Id</td>
+                    <td>@claim.ClaimDescription</td>
+                    <td>@claim.HoursWorked</td>
+                    <td>@claim.HourlyRate.ToString("C2")</td>
+                    <td>@claim.Amount.ToString("C2")</td>
+                    <td>@claim.ClaimDate.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(claim.DocumentPath))
+                        {
+                            <a href="/uploads/@claim.DocumentPath" target="_blank">View Document</a>
+                        }
+                        else
+                        {
+                            <span>No Document</span>
+                        }
+                    </td>
+                    <td>
+                        <span class="badge @(claim.Status == "Approved" ? "badge-success" : claim.Status == "Rejected" ? "badge-danger" : "badge-warning")">
+                            @claim.Status
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a href="/Dashboard" class="btn btn-info btn-lg mt-4">Back to Dashboard</a>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+    }
+
+    h1 {
+        color: #007bff;
+        font-size: 36px;
+    }
+
+    .table {
+        margin-top: 30px;
+        width: 100%;
+    }
+
+    .badge-success {
+        background-color: #28a745;
+    }
+
+    .badge-danger {
+        background-color: #dc3545;
+    }
+
+    .badge-warning {
+        background-color: #ffc107;
+    }
+</style>

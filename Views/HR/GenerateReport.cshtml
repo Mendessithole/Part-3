@@ -1,0 +1,25 @@
+﻿@model IEnumerable<CMCSProjectPART1.Models.ClaimModel>
+
+<h2>Approved Claims Report</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model)
+        {
+            <tr>
+                <td>@claim.Description</td>
+                <td>@claim.Amount</td>
+                <td>@claim.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Dashboard" class="btn btn-link">Back to Dashboard</a>
